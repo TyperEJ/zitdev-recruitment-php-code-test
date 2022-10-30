@@ -2,17 +2,19 @@
 
 namespace App\Service;
 
+use App\Service\Loggers\LoggerFactory;
+use App\Service\Loggers\LoggerTypeErrorException;
+
 class AppLogger
 {
-    const TYPE_LOG4PHP = 'log4php';
-
     private $logger;
 
-    public function __construct($type = self::TYPE_LOG4PHP)
+    /**
+     * @throws LoggerTypeErrorException
+     */
+    public function __construct($type)
     {
-        if ($type == self::TYPE_LOG4PHP) {
-            $this->logger = \Logger::getLogger("Log");
-        }
+        $this->logger = LoggerFactory::make($type);
     }
 
     public function info($message = '')

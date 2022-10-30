@@ -10,10 +10,12 @@ use App\Service\AppLogger;
  */
 class AppLoggerTest extends TestCase
 {
-
     public function testInfoLog()
     {
         $logger = new AppLogger('log4php');
+        $logger->info('This is info log message');
+
+        $logger = new AppLogger('think-log');
         $logger->info('This is info log message');
     }
 }
